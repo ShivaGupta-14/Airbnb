@@ -14,7 +14,7 @@ let app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:"https://airbnb-1-vmnn.onrender.com",
+    origin:"https://airbnb-henna-eta.vercel.app",
     credentials:true
 }))
 
