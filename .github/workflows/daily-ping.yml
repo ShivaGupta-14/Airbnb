@@ -1,4 +1,4 @@
-name: Keep Render service awake
+name: Keep Render Service Awake
 
 on:
   schedule:
@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: Ping Render health endpoint
         run: |
-          # Curl the health endpoint; exit non-zero if not 200
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://airbnb-2xpb.onrender.com || true)
-          echo "health status: $STATUS"
+          echo "Ping at $(date)"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 https://airbnb-2xpb.onrender.com || true)
+          echo "Health status: $STATUS"
           if [ "$STATUS" != "200" ]; then
             echo "Health check failed with status $STATUS" >&2
             exit 1
